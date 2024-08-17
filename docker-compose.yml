@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vue-app
+    ports:
+      - "${VUE_APP_PORT}:80"
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-app
+    volumes:
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "${NGINX_PORT}:80"
+    depends_on:
+      - app

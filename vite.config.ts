@@ -4,11 +4,16 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-// https://vitejs.dev/config/
+const port = process.env.VUE_APP_PORT ? parseInt(process.env.VUE_APP_PORT, 10) : 8000
+
 export default defineConfig({
+  server: {
+    host: true,
+    port: port
+  },
   plugins: [
     vue(),
-    vueDevTools(),
+    vueDevTools()
   ],
   resolve: {
     alias: {
