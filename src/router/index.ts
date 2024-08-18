@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Customer from '@/views/customer/Customer.vue'
 import Supplier from '@/views/supplier/Supplier.vue'
+import Quality from '@/views/Quality.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/supplier',
       name: 'supplier',
       component: Supplier
+    },
+    {
+      path: '/quality',
+      name: 'quality',
+      component: Quality
     },
     {
       path: '/about',
