@@ -7,7 +7,7 @@ import FormModal from '@/views/supplier/FormModal.vue'
 
 const suppliers = ref([])
 const isLoading = ref(true)
-const dataModal = ref({});
+const dataModal = ref({})
 
 const loadData = async () => {
   try {
@@ -22,15 +22,31 @@ const loadData = async () => {
 }
 
 const createSupplier = () => {
-  dataModal.value = true;
+  dataModal.value = { 'id': null }
 }
 
 const editSupplier = async (id: number) => {
-
+  dataModal.value = { 'id': id }
 }
 
 const deleteSupplier = async (id: number, index: number) => {
+  try {
+    isLoading.value = true
+    await apiClient.delete(`/suppliers/${id}`)
+    ElMessage.success('Registro eliminado correctamente')
+    suppliers.value.splice(index, 1)
+  } catch (e) {
+    ElMessage.error(e)
+  } finally {
+    isLoading.value = false
+  }
+}
 
+const onLoadTable = async () => {
+  isLoading.value = true
+  await loadData().then(() => {
+    isLoading.value = false
+  })
 }
 
 onMounted(() => {
