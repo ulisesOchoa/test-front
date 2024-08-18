@@ -2,41 +2,54 @@
 import { onMounted, ref } from 'vue'
 import { Plus } from '@element-plus/icons-vue'
 import apiClient from '@/plugins/axios/axios'
-import { ElMessage } from 'element-plus'
 
-const isLoading = ref(true)
-const qualities = ref([])
+
+const customer = ref([]);
 
 const loadData = async () => {
-  try {
-    const response = await apiClient.get('/qualities')
-    const { data } = response.data
-    qualities.value = data
-  } catch (e) {
-    ElMessage.error(e)
-  } finally {
-    isLoading.value = false
+  const response = await apiClient.get('/customers')
+  console.log(response);
+
+
+};
+
+const tableData = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
   }
-}
+]
 
 onMounted(() => {
   loadData()
-})
+});
 </script>
 
 <template>
-  <el-table
-    v-loading="isLoading"
-    :data="qualities"
-    style="width: 100%"
-  >
+  <el-table :data="tableData" style="width: 100%">
     <el-table-column fixed="right" align="center">
       <template #header>
         <el-row justify="space-evenly" align="middle">
           <el-col :span="12">
             <el-row justify="start">
               <el-text size="large" tag="b">
-                Listado de calidades de Gas
+                Listado de asignaciones
               </el-text>
             </el-row>
           </el-col>
@@ -58,9 +71,11 @@ onMounted(() => {
           </el-col>
         </el-row>
       </template>
-      <el-table-column prop="name" label="Nombre" />
-      <el-table-column prop="price" label="Precio" />
-      <el-table-column prop="company_name" label="Proveedor" />
+      <el-table-column prop="client_name" label="Nombre del cliente" />
+      <el-table-column prop="gas_quality_anme" label="Calidad" />
+      <el-table-column prop="purchase_price" label="Precio de compra" />
+      <el-table-column prop="sale_price" label="Precio de venta" />
+      <el-table-column prop="profit" label="Beneficio" />
     </el-table-column>
   </el-table>
 </template>

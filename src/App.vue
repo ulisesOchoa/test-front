@@ -24,6 +24,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Clientes</RouterLink>
         <RouterLink to="/supplier"> Proveedores </RouterLink>
         <RouterLink to="/quality"> Calidades de Gas </RouterLink>
+        <RouterLink to="/Assignment"> Asignaciones  </RouterLink>
       </nav>
     </div>
   </header>
