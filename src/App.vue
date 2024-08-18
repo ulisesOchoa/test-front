@@ -5,14 +5,24 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <div>
+      <HelloWorld msg="Prueba Técnica Full Stack" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+          En esta prueba técnica, desarrollé una aplicación web completa que incluye tanto el backend como el frontend
+          utilizando tecnologías modernas y buenas prácticas de desarrollo.
 
+          Para el backend, utilicé Laravel siguiendo una arquitectura basada en el patrón de repositorio, lo que permite
+          una mayor flexibilidad y facilidad de mantenimiento en el código. Implementé migraciones para gestionar la
+          base de datos de manera eficiente y garantizar la coherencia en los cambios. Además, personalicé las
+          respuestas de la API para que fueran claras y consistentes, asegurando que el código fuese limpio y fácil de
+          seguir.
+
+          En el frontend, empleé Vue 3 junto con el gestor de estado Pinia, lo que permitió manejar el estado de la
+          aplicación de manera efectiva y mantener una experiencia de usuario fluida e interactiva. La aplicación
+          resultante es robusta, modular y está bien documentada, lo que facilita su comprensión y ampliación.
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">Clientes</RouterLink>
+        <RouterLink to="/supplier"> Proveedores </RouterLink>
       </nav>
     </div>
   </header>
@@ -24,11 +34,6 @@ import HelloWorld from './components/HelloWorld.vue'
 header {
   line-height: 1.5;
   max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
 }
 
 nav {
@@ -61,10 +66,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {

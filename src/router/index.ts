@@ -1,13 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Customer from '@/views/customer/Customer.vue'
+import Supplier from '@/views/supplier/Supplier.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'customer',
+      component: Customer
+    },
+    {
+      path: '/supplier',
+      name: 'supplier',
+      component: Supplier
     },
     {
       path: '/about',

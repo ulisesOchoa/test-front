@@ -4,12 +4,15 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-const port = process.env.VUE_APP_PORT ? parseInt(process.env.VUE_APP_PORT, 10) : 8000
+const port = Number.isInteger(Number(process.env.VUE_APP_PORT)) ? Number(process.env.VUE_APP_PORT) : 3000;
 
 export default defineConfig({
   server: {
+    port: port,
     host: true,
-    port: port
+    watch: {
+      usePolling: true
+    }
   },
   plugins: [
     vue(),
