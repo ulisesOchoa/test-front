@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { Delete, Plus, Edit as IconEdit } from '@element-plus/icons-vue'
+import { Delete, Plus, Edit as IconEdit, Download } from '@element-plus/icons-vue'
 import apiClient from '@/plugins/axios/axios'
 import FormModal from './FormModal.vue'
 import { ElMessage } from 'element-plus'
@@ -49,6 +49,28 @@ const onLoadTable = async () => {
   })
 }
 
+const exportFile = async () => {
+  try {
+    isLoading.value = true
+
+    const response = await apiClient.get('customers/export', {
+      responseType: 'blob'
+    })
+
+    const url = window.URL.createObjectURL(new Blob([response.data]))
+    const link = document.createElement('a')
+    link.href = url
+    link.download = 'customers_export.xlsx'
+    link.click()
+
+    ElMessage.success('Archivo descargado correctamente')
+  } catch (e) {
+    ElMessage.error('Error al descargar el archivo')
+  } finally {
+    isLoading.value = false
+  }
+}
+
 onMounted(() => {
   loadData()
 })
@@ -72,6 +94,20 @@ onMounted(() => {
           </el-col>
           <el-col :span="12">
             <el-row class="row-bg" justify="end">
+
+              <el-link type="primary" @click="exportFile">
+                <el-tooltip
+                  class="box-item"
+                  effect="dark"
+                  placement="left"
+                  content="Exportar a EXCEL"
+                >
+                  <el-icon :size="20">
+                    <Download />
+                  </el-icon>
+                </el-tooltip>
+              </el-link>
+
               <el-link type="primary" @click="createCustomer">
                 <el-tooltip
                   class="box-item"
@@ -84,6 +120,7 @@ onMounted(() => {
                   </el-icon>
                 </el-tooltip>
               </el-link>
+
             </el-row>
           </el-col>
         </el-row>
