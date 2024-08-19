@@ -95,8 +95,8 @@ onMounted(() => {
       <el-table-column prop="purchase_price" label="Precio de compra" />
       <el-table-column prop="sale_price" label="Precio de venta" />
       <el-table-column prop="profit" label="beneficio" />
-      <el-table-column prop="quality" label="proveedor" />
-      <el-table-column prop="supplier" label="Calidad" />
+      <el-table-column prop="quality" label="Calidad" />
+      <el-table-column prop="supplier" label="proveedor" />
       <el-table-column align="right" width="200">
         <template #default="scope">
           <el-button

@@ -34,6 +34,7 @@ const schema = yup.object({
 const { defineField, handleSubmit, isSubmitting, resetForm, setFieldValue } = useForm({
   validationSchema: schema,
   initialValues: {
+    id: null,
     name: '',
     lastName: '',
     dni: '',
@@ -80,6 +81,7 @@ const onSubmit = handleSubmit(async (values) => {
       method: method,
       url: pathRoute,
       data: {
+        id: values?.id ?? null ,
         first_name: values.name,
         last_name: values.lastName,
         identity_number: values.dni,
@@ -109,6 +111,7 @@ const getCustomer = async (id: number) => {
     isLoading.value = true
     const response = await apiClient.get(`/customers/${id}`)
     const { data } = response.data
+    setFieldValue('id', data.id)
     setFieldValue('name', data.first_name)
     setFieldValue('lastName', data.last_name)
     setFieldValue('dni', data.identity_number)
